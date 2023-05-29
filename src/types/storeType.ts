@@ -5,9 +5,13 @@ export type post = {
   userId: number;
 };
 
-interface storeType {
+export interface postsStore {
   posts: post[] | [];
   loading: boolean;
+}
+
+interface storeType {
+  posts: postsStore;
 }
 
 export default storeType;

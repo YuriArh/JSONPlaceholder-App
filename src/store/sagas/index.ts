@@ -1,9 +1,7 @@
-import { getPosts } from "./../../types/actionTypes";
 import { takeEvery, put, call, StrictEffect } from "redux-saga/effects";
 import { actionIds } from "../../types/actionTypes";
 import jsonApi from "../../api/jsonApi";
 import { AxiosResponse } from "axios";
-import { gotPosts } from "../../types/actionTypes";
 
 // watchers
 
@@ -15,17 +13,16 @@ function* getPostsWatcher(): Generator<StrictEffect> {
 
 function* getPostsWorker() {
   try {
+    yield put({ type: "POSTS_PENDING" });
     const response: AxiosResponse = yield call(jsonApi.get, "/posts/");
 
     switch (response.status) {
       case 200:
-        const data: gotPosts = {
-          type: "GOT_POSTS",
-          posts: response.data,
-        };
-        yield put(data);
+        yield put({ type: "GOT_POSTS", payload: response.data });
     }
-  } catch (err) {}
+  } catch (err: any) {
+    yield put({ type: "POSTS_ERROR", payload: err.message });
+  }
 }
 
 export default function* rootSaga() {

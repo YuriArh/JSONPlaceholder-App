@@ -1,4 +1,4 @@
-import logo from "../../assets/me/me.jpg";
+import logo from "../assets/me/me.jpg";
 import { Navbar, Nav, Container, Offcanvas, Stack } from "react-bootstrap";
 
 function Header() {
