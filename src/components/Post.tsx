@@ -1,16 +1,33 @@
 import { post } from "../types/storeType";
-import { Accordion, Card } from "react-bootstrap";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
-function Post(props: { post: post }) {
+import { Accordion, Card, Button } from "react-bootstrap";
+
+function Post(props: {
+  post: post;
+  openPostId: number | null;
+  toggleComments: (postId: number) => void;
+}) {
+  const { post, openPostId, toggleComments } = props;
+
   return (
-    <Card>
-      <Card.Header>
-        <h4>{props.post.title}</h4>
-      </Card.Header>
-      <Accordion.Collapse eventKey="0">
-        <Card.Body>Hello! I'm the body</Card.Body>
-      </Accordion.Collapse>
-    </Card>
+    <Accordion defaultActiveKey="1">
+      <Card key={post.id} className="mb-4">
+        <Card.Body>
+          <Card.Title>{post.title}</Card.Title>
+          <Card.Text>{post.body}</Card.Text>
+          <Button onClick={() => toggleComments(post.id)}>
+            {openPostId === post.id
+              ? "Скрыть комментарии"
+              : "Показать комментарии"}
+          </Button>
+          {openPostId === post.id && (
+            <div>
+              <h5 className="mt-4">Комментарии:</h5>
+              <ul>{openPostId}</ul>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
+    </Accordion>
   );
 }
 

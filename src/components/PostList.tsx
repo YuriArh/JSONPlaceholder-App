@@ -1,14 +1,26 @@
+import { useState } from "react";
 import Post from "./Post";
-import { Accordion } from "react-bootstrap";
 import { post } from "../types/storeType";
 
 function PostList(props: { posts: post[] }) {
+  const [openPostId, setOpenPostId] = useState<number | null>(null);
+
+  const toggleComments = (postId: number) => {
+    setOpenPostId((prevOpenPostId) =>
+      prevOpenPostId === postId ? null : postId
+    );
+  };
   return (
-    <Accordion className="container-md">
-      {props.posts?.map((post, index) => (
-        <Post key={index} post={post} />
+    <div className="container-md">
+      {props.posts?.map((post) => (
+        <Post
+          openPostId={openPostId}
+          key={post.id}
+          post={post}
+          toggleComments={toggleComments}
+        />
       ))}
-    </Accordion>
+    </div>
   );
 }
 
