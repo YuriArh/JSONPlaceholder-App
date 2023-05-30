@@ -1,5 +1,6 @@
 import { post } from "../types/storeType";
 import { Accordion, Card, Button } from "react-bootstrap";
+import Comments from "./Comments";
 
 function Post(props: {
   post: post;
@@ -22,7 +23,7 @@ function Post(props: {
           {openPostId === post.id && (
             <div>
               <h5 className="mt-4">Комментарии:</h5>
-              <ul>{openPostId}</ul>
+              <Comments id={post.id}></Comments>
             </div>
           )}
         </Card.Body>
