@@ -18,7 +18,7 @@ const commentReducer: Reducer<commentsStore> = (
       return {
         ...state,
         loading: false,
-        comments: [...state.comments, ...action.payload],
+        comments: action.payload,
       };
     case "COMMENTS_PENDING":
       return {
