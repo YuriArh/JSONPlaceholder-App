@@ -2,6 +2,9 @@ import { post, comment } from "./storeType";
 
 export interface getPosts {
   type: "GET_POSTS";
+  payload?: {
+    params: string;
+  };
 }
 
 export interface getComments {

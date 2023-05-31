@@ -18,7 +18,7 @@ const postsReducer: Reducer<postsStore> = (
       return {
         ...state,
         loading: false,
-        posts: [...state.posts, ...action.payload],
+        posts: action.payload,
       };
     case "POSTS_PENDING":
       return {

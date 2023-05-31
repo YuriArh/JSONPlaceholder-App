@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Post from "./Post";
 import { post } from "../types/storeType";
+import { Container } from "react-bootstrap";
 
 function PostList(props: { posts: post[] }) {
   const [openPostId, setOpenPostId] = useState<number | null>(null);
@@ -11,7 +12,7 @@ function PostList(props: { posts: post[] }) {
     );
   };
   return (
-    <div className="container-md">
+    <Container>
       {props.posts?.map((post) => (
         <Post
           openPostId={openPostId}
@@ -20,7 +21,7 @@ function PostList(props: { posts: post[] }) {
           toggleComments={toggleComments}
         />
       ))}
-    </div>
+    </Container>
   );
 }
 

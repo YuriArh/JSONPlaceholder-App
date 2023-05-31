@@ -1,0 +1,9 @@
+.clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-60%);
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
