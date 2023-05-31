@@ -3,7 +3,9 @@ import { post, comment } from "./storeType";
 export interface getPosts {
   type: "GET_POSTS";
   payload?: {
-    params: string;
+    term?: string | number;
+    page?: number | string;
+    limit?: string | number;
   };
 }
 

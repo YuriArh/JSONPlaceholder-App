@@ -3,11 +3,20 @@ import {
   getCommentsActionCreator,
 } from "./../types/actionCreatorTypes";
 
-export const getPosts: getPostsActionCreator = (params?: string) => {
+export const getPosts: getPostsActionCreator = (
+  term?: string | number,
+  page?: number | string,
+  limit?: string | number
+) => {
+  const checkParam = (val?: string | number) => {
+    return val ? val : "";
+  };
   return {
     type: "GET_POSTS",
     payload: {
-      params: params ? params : "",
+      term: checkParam(term),
+      page: checkParam(page),
+      limit: checkParam(limit),
     },
   };
 };

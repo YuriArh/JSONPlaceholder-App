@@ -15,10 +15,13 @@ export function* getPostsWatcher(): Generator<StrictEffect> {
 function* getPostsWorker(action: getPosts) {
   try {
     yield put({ type: "POSTS_PENDING" });
-    const response: AxiosResponse = yield call(
-      jsonApi.get,
-      `/posts?${action.payload ? action.payload?.params : ""}`
-    );
+
+    const response: AxiosResponse = action.payload?.term
+      ? yield call(jsonApi.get, `/posts?title=${action.payload?.term}`)
+      : yield call(
+          jsonApi.get,
+          `/posts?_page=${action.payload?.page}&_limit=${action.payload?.limit}`
+        );
 
     switch (response.status) {
       case 200:
