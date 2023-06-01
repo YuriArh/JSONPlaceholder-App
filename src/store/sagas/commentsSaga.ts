@@ -1,4 +1,4 @@
-import { takeEvery, put, call, StrictEffect } from "redux-saga/effects";
+import { takeEvery, put, call, StrictEffect, delay } from "redux-saga/effects";
 import { actionIds, getComments } from "../../types/actionTypes";
 import jsonApi from "../../api/jsonApi";
 import { AxiosResponse } from "axios";
@@ -14,6 +14,9 @@ export function* getCommentsWatcher(): Generator<StrictEffect> {
 function* getCommentsWorker(action: getComments) {
   try {
     yield put({ type: "COMMENTS_PENDING" });
+
+    yield delay(500);
+
     const response: AxiosResponse = yield call(
       jsonApi.get,
       `/posts/${action.payload.id}/comments`

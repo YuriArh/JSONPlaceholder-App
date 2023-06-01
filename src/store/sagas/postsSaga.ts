@@ -1,4 +1,4 @@
-import { takeEvery, put, call, StrictEffect } from "redux-saga/effects";
+import { takeEvery, put, call, StrictEffect, delay } from "redux-saga/effects";
 import { actionIds } from "../../types/actionTypes";
 import jsonApi from "../../api/jsonApi";
 import { AxiosResponse } from "axios";
@@ -16,12 +16,12 @@ function* getPostsWorker(action: getPosts) {
   try {
     yield put({ type: "POSTS_PENDING" });
 
-    const response: AxiosResponse = action.payload?.term
-      ? yield call(jsonApi.get, `/posts?title=${action.payload?.term}`)
-      : yield call(
-          jsonApi.get,
-          `/posts?_page=${action.payload?.page}&_limit=${action.payload?.limit}`
-        );
+    yield delay(500);
+
+    const response: AxiosResponse = yield call(
+      jsonApi.get,
+      action.payload.params
+    );
 
     switch (response.status) {
       case 200:

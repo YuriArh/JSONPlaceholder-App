@@ -1,11 +1,9 @@
-import { post, comment } from "./storeType";
+import { post, comment, user } from "./storeType";
 
 export interface getPosts {
   type: "GET_POSTS";
-  payload?: {
-    term?: string | number;
-    page?: number | string;
-    limit?: string | number;
+  payload: {
+    params: string;
   };
 }
 
@@ -16,9 +14,17 @@ export interface getComments {
   };
 }
 
+export interface getUser {
+  type: "GET_USER";
+  payload: {
+    params: string;
+  };
+}
+
 export const actionIds = {
   GET_POSTS: "GET_POSTS",
   GET_COMMENTS: "GET_COMMENTS",
+  GET_USER: "GET_USER",
 };
 
 export interface postsPending {
@@ -54,3 +60,19 @@ export interface commentsError {
 export type commentAction = commentsPending | gotComments | commentsError;
 
 export type Params = { id: number; type: string };
+
+export interface userPending {
+  type: "USER_PENDING";
+}
+
+export interface gotUser {
+  type: "GOT_USER";
+  payload: user;
+}
+
+export interface userError {
+  type: "USER_ERROR";
+  payload: string;
+}
+
+export type userAction = userPending | gotUser | userError;

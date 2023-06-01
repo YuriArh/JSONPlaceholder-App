@@ -1,5 +1,6 @@
 import { post } from "../types/storeType";
-import { Accordion, Card, Button, Image, Stack } from "react-bootstrap";
+import { Accordion, Card, Button, Stack } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Comments from "./Comments";
 import avatar from "../assets/avatar.svg";
 
@@ -19,11 +20,13 @@ function Post(props: {
             gap={3}
             style={{ alignItems: "flex-start" }}
           >
-            <Image
-              src={avatar}
-              style={{ width: "100px", height: "100px", border: "none" }}
-              thumbnail
-            />
+            <Link to={`user?id=${post.userId}`}>
+              <img
+                src={avatar}
+                style={{ width: "100px", height: "100%", border: "none" }}
+              />
+            </Link>
+
             <div>
               <Card.Title>{post.title}</Card.Title>
               <Card.Text>{post.body}</Card.Text>

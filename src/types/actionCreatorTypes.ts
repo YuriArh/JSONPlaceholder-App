@@ -1,8 +1,7 @@
-import { getPosts, getComments } from "./actionTypes";
+import { getPosts, getComments, getUser } from "./actionTypes";
 
-export type getPostsActionCreator = (
-  term?: string | number,
-  page?: string | number,
-  limit?: string | number
-) => getPosts;
+export type getPostsActionCreator = (params: string) => getPosts;
+
 export type getCommentsActionCreator = (id: number) => getComments;
+
+export type getUserActionCreator = (params: string) => getUser;

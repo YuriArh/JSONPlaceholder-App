@@ -1,5 +1,6 @@
 import logo from "../assets/me/me.jpg";
 import { Navbar, Nav, Container, Offcanvas, Stack } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -36,7 +37,9 @@ function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action1">List of posts</Nav.Link>
+                <Link to={"/"}>
+                  <Nav.Link href="#action1">List of posts</Nav.Link>
+                </Link>
                 <Nav.Link href="#action2">About me</Nav.Link>
               </Nav>
             </Offcanvas.Body>

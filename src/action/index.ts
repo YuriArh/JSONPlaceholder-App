@@ -1,22 +1,14 @@
 import {
   getPostsActionCreator,
   getCommentsActionCreator,
+  getUserActionCreator,
 } from "./../types/actionCreatorTypes";
 
-export const getPosts: getPostsActionCreator = (
-  term?: string | number,
-  page?: number | string,
-  limit?: string | number
-) => {
-  const checkParam = (val?: string | number) => {
-    return val ? val : "";
-  };
+export const getPosts: getPostsActionCreator = (params: string) => {
   return {
     type: "GET_POSTS",
     payload: {
-      term: checkParam(term),
-      page: checkParam(page),
-      limit: checkParam(limit),
+      params,
     },
   };
 };
@@ -26,6 +18,15 @@ export const getComments: getCommentsActionCreator = (id: number) => {
     type: "GET_COMMENTS",
     payload: {
       id: id,
+    },
+  };
+};
+
+export const getUser: getUserActionCreator = (params: string) => {
+  return {
+    type: "GET_USER",
+    payload: {
+      params,
     },
   };
 };

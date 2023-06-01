@@ -1,12 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
 import { Container, Dropdown } from "react-bootstrap";
 
-function Sort({ setSort }: { setSort: Dispatch<SetStateAction<boolean>> }) {
+function Sort({
+  sort,
+  setSort,
+}: {
+  sort: boolean;
+  setSort: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <Container className="mb-3 d-flex justify-content-end">
       <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic">
-          Sort
+          {sort ? "Sort by title" : "Default"}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
