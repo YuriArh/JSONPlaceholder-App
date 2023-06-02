@@ -23,8 +23,10 @@ function App() {
       ? dispatch(getPosts(`/posts?title=${term}`))
       : dispatch(getPosts(`/posts?_page=${page}&_limit=${limit}`));
   }, [term, page]);
+
   const posts = useSelector((store: storeType) => store.posts.posts);
   const loading = useSelector((store: storeType) => store.posts.loading);
+  const error = useSelector((store: storeType) => store.posts.error);
 
   const sortedPosts = sort
     ? [...posts].sort((a, b) => {
@@ -37,16 +39,26 @@ function App() {
       <Header />
       <Search term={term} setTerm={setTerm} />
       <Sort sort={sort} setSort={setSort} />
-      {!loading ? (
+      {!loading && !error ? (
         <>
           <PostList posts={sortedPosts} />
-          <Pagination page={page} setPage={setPage} limit={limit} total={100} />
+          {!term && (
+            <Pagination
+              page={page}
+              setPage={setPage}
+              limit={limit}
+              total={100}
+            />
+          )}
         </>
       ) : (
         <Container className="d-flex justify-content-center mt-5 mb-5">
           <FadeLoader color="#106cf6" />
         </Container>
       )}
+      <Container className="d-flex justify-content-center mt-5 mb-5">
+        {error}
+      </Container>
     </>
   );
 }

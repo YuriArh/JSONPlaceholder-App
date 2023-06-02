@@ -40,7 +40,9 @@ function Header() {
                 <Link to={"/"}>
                   <Nav.Link href="#action1">List of posts</Nav.Link>
                 </Link>
-                <Nav.Link href="#action2">About me</Nav.Link>
+                <Link to={"/my"}>
+                  <Nav.Link href="#action2">About me</Nav.Link>
+                </Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

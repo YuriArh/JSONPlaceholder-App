@@ -5,6 +5,7 @@ import { userAction } from "../../types/actionTypes";
 const initialState: userStore = {
   user: {},
   loading: false,
+  error: "",
 };
 
 const userReducer: Reducer<userStore> = (

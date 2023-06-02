@@ -7,6 +7,7 @@ import { postAction } from "../../types/actionTypes";
 const initialState: postsStore = {
   posts: [],
   loading: false,
+  error: "",
 };
 
 const postsReducer: Reducer<postsStore> = (

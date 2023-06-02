@@ -32,6 +32,7 @@ export type user = {
 export interface postsStore {
   posts: post[] | [];
   loading: boolean;
+  error: string;
 }
 
 export type comment = {
@@ -45,11 +46,13 @@ export type comment = {
 export interface commentsStore {
   comments: comment[] | [];
   loading: boolean;
+  error: string;
 }
 
 export interface userStore {
   user: user;
   loading: boolean;
+  error: string;
 }
 
 interface storeType {

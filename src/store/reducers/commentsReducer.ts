@@ -7,6 +7,7 @@ import { commentAction } from "../../types/actionTypes";
 const initialState: commentsStore = {
   comments: [],
   loading: false,
+  error: "",
 };
 
 const commentReducer: Reducer<commentsStore> = (
