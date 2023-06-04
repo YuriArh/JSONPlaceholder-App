@@ -41,10 +41,14 @@ function Header() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav>
                 <Link
                   to={"/"}
-                  style={{ textDecoration: "none", color: "black" }}
+                  style={{
+                    textDecoration: "none",
+                    color: "black",
+                    marginBottom: "5px",
+                  }}
                 >
                   List of posts
                 </Link>
