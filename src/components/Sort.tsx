@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Container, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 function Sort({
   sort,
@@ -9,7 +9,7 @@ function Sort({
   setSort: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
-    <Container className="mb-3 d-flex justify-content-end">
+    <div className="mb-3 d-flex justify-content-end">
       <Dropdown>
         <Dropdown.Toggle variant="light" id="dropdown-basic">
           {sort ? "Sort by title" : "Default"}
@@ -22,7 +22,7 @@ function Sort({
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-    </Container>
+    </div>
   );
 }
 

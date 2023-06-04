@@ -37,28 +37,29 @@ function App() {
   return (
     <>
       <Header />
-      <Search term={term} setTerm={setTerm} />
-      <Sort sort={sort} setSort={setSort} />
-      {!loading && !error ? (
-        <>
-          <PostList posts={sortedPosts} />
-          {!term && (
-            <Pagination
-              page={page}
-              setPage={setPage}
-              limit={limit}
-              total={100}
-            />
-          )}
-        </>
-      ) : !error ? (
-        <Container className="d-flex justify-content-center mt-5 mb-5">
-          <FadeLoader color="#106cf6" />
-        </Container>
-      ) : (
-        ""
-      )}
-      <Container className="d-flex justify-content-center mt-5 mb-5">
+      <Container>
+        <Search term={term} setTerm={setTerm} />
+        <Sort sort={sort} setSort={setSort} />
+        {!loading && !error ? (
+          <>
+            <PostList posts={sortedPosts} />
+            {!term && (
+              <Pagination
+                page={page}
+                setPage={setPage}
+                limit={limit}
+                total={100}
+              />
+            )}
+          </>
+        ) : !error ? (
+          <Container className="d-flex justify-content-center">
+            <FadeLoader color="#106cf6" />
+          </Container>
+        ) : (
+          ""
+        )}
+
         {error}
       </Container>
     </>

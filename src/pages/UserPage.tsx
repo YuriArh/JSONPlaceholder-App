@@ -14,7 +14,7 @@ import { FadeLoader } from "react-spinners";
 function UserPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(useParams());
+
   useEffect(() => {
     dispatch(getPosts(`/user/${id}/posts`));
     dispatch(getUser(`/users/${id}`));
@@ -30,32 +30,34 @@ function UserPage() {
   return (
     <>
       <Header />
-      <BackButton />
-      {!loadingUser && !loadingPosts ? (
-        <>
-          {!userError ? (
-            <UserCard user={user} />
-          ) : (
-            <Container className="d-flex justify-content-center mt-5 mb-5">
-              {userError}
+      <Container>
+        <BackButton />
+        {!loadingUser && !loadingPosts ? (
+          <>
+            {!userError ? (
+              <UserCard user={user} />
+            ) : (
+              <Container className="d-flex justify-content-center mt-5 mb-5">
+                {userError}
+              </Container>
+            )}
+            <Container>
+              <h3>Posts:</h3>
             </Container>
-          )}
-          <Container>
-            <h3>Posts:</h3>
+            {!postsError ? (
+              <PostList posts={posts} />
+            ) : (
+              <Container className="d-flex justify-content-center mt-5 mb-5">
+                {postsError}
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container className="d-flex justify-content-center mt-5 mb-5">
+            <FadeLoader color="#106cf6" />
           </Container>
-          {!postsError ? (
-            <PostList posts={posts} />
-          ) : (
-            <Container className="d-flex justify-content-center mt-5 mb-5">
-              {postsError}
-            </Container>
-          )}
-        </>
-      ) : (
-        <Container className="d-flex justify-content-center mt-5 mb-5">
-          <FadeLoader color="#106cf6" />
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 }

@@ -15,15 +15,13 @@ function Comments(props: { id: number }) {
   const loading = useSelector((store: storeType) => store.comments.loading);
   const error = useSelector((store: storeType) => store.comments.error);
   return (
-    <ul>
+    <>
       {!loading ? (
         comments.map((item: comment) => {
           return (
-            <Card key={item.id} border="light">
-              <Card.Body>
-                <Card.Title>{item.email}</Card.Title>
-                <Card.Body>{item.body}</Card.Body>
-              </Card.Body>
+            <Card key={item.id} border="light" className="p-3">
+              <Card.Title>{item.email}</Card.Title>
+              <Card.Body>{item.body}</Card.Body>
             </Card>
           );
         })
@@ -37,7 +35,7 @@ function Comments(props: { id: number }) {
       <Container className="d-flex justify-content-center mt-5 mb-5">
         {error}
       </Container>
-    </ul>
+    </>
   );
 }
 

@@ -15,11 +15,7 @@ function Post(props: {
     <Accordion defaultActiveKey="1">
       <Card key={post.id} className="mb-4">
         <Card.Body>
-          <Stack
-            direction="horizontal"
-            gap={3}
-            style={{ alignItems: "flex-start" }}
-          >
+          <Stack direction="horizontal" gap={3}>
             <Link to={`/user/${post.userId}`}>
               <img
                 src={avatar}
@@ -27,11 +23,9 @@ function Post(props: {
               />
             </Link>
 
-            <div>
-              <Card.Title>{post.title}</Card.Title>
-              <Card.Text>{post.body}</Card.Text>
-            </div>
+            <Card.Title>{post.title}</Card.Title>
           </Stack>
+          <Card.Text className="mt-3">{post.body}</Card.Text>
           <Button className="mt-3" onClick={() => toggleComments(post.id)}>
             {openPostId === post.id ? "Hide comments" : "Show comments"}
           </Button>

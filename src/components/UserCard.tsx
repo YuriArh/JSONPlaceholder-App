@@ -1,12 +1,31 @@
-import { Container, Stack } from "react-bootstrap";
+import { Stack, Image } from "react-bootstrap";
 import { user } from "../types/storeType";
 import avatar from "../assets/avatar.svg";
+import { useState, useEffect } from "react";
 
 function UserCard({ user }: { user: user }) {
+  const [windowSize, setWindowSize] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Container className="mb-3">
-      <Stack direction="horizontal" gap={3} style={{ alignItems: "unset" }}>
-        <img
+    <div className="mb-3">
+      <Stack
+        direction={windowSize < 550 ? "vertical" : "horizontal"}
+        gap={3}
+        style={{ alignItems: "unset" }}
+      >
+        <Image
           src={avatar}
           style={{ width: "300px", height: "100%", border: "none" }}
         />
@@ -26,7 +45,7 @@ function UserCard({ user }: { user: user }) {
           </p>
         </Stack>
       </Stack>
-    </Container>
+    </div>
   );
 }
 export default UserCard;
