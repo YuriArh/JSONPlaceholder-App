@@ -17,7 +17,7 @@ function Header() {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
                 <Stack direction="horizontal" gap={2}>
-                  <Navbar.Brand href="/my">
+                  <Link to="/my">
                     <img
                       src={logo}
                       width="80"
@@ -25,7 +25,7 @@ function Header() {
                       className="d-inline-block align-top"
                       alt="React Bootstrap logo"
                     />
-                  </Navbar.Brand>
+                  </Link>
                   <Stack gap={2}>
                     <Link
                       to="/my"
@@ -42,8 +42,18 @@ function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href={"/"}>List of posts</Nav.Link>
-                <Nav.Link href={"/my"}>About me</Nav.Link>
+                <Link
+                  to={"/"}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  List of posts
+                </Link>
+                <Link
+                  to={"/my"}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  About me
+                </Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
