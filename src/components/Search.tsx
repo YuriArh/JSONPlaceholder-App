@@ -11,27 +11,28 @@ function Search({
   setTerm: Dispatch<SetStateAction<string>>;
 }) {
   return (
-    <Form className="mb-3">
-      <div style={{ position: "relative" }}>
-        <Form.Control
-          className="mr-sm-2"
-          placeholder="Post search"
-          aria-label="Post search"
-          aria-describedby="basic-addon1"
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-        />
-        {term && (
-          <Button
-            variant="link"
-            className="clear-btn"
-            onClick={() => setTerm("")}
-          >
-            <AiOutlineCloseCircle />
-          </Button>
-        )}
-      </div>
-    </Form>
+    <div className="mb-3" style={{ position: "relative" }}>
+      <Form.Control
+        className="mr-sm-2"
+        placeholder="Post search"
+        aria-label="Post search"
+        aria-describedby="basic-addon1"
+        value={term}
+        onChange={(e) => {
+          e.preventDefault();
+          setTerm(e.target.value);
+        }}
+      />
+      {term && (
+        <Button
+          variant="link"
+          className="clear-btn"
+          onClick={() => setTerm("")}
+        >
+          <AiOutlineCloseCircle />
+        </Button>
+      )}
+    </div>
   );
 }
 
