@@ -1,5 +1,6 @@
 import { post, comment, user } from "./storeType";
 
+//for actionCreator
 export interface getPosts {
   type: "GET_POSTS";
   payload: {
@@ -25,8 +26,10 @@ export const actionIds = {
   GET_POSTS: "GET_POSTS",
   GET_COMMENTS: "GET_COMMENTS",
   GET_USER: "GET_USER",
+  CLEAR_STATE: "CLEAR_STATE",
 };
 
+//postsAction
 export interface postsPending {
   type: "POSTS_PENDING";
 }
@@ -43,6 +46,7 @@ export interface postsError {
 
 export type postAction = postsPending | gotPosts | postsError;
 
+//CommentsAction
 export interface commentsPending {
   type: "COMMENTS_PENDING";
 }
@@ -59,8 +63,7 @@ export interface commentsError {
 
 export type commentAction = commentsPending | gotComments | commentsError;
 
-export type Params = { id: number; type: string };
-
+//userAction
 export interface userPending {
   type: "USER_PENDING";
 }

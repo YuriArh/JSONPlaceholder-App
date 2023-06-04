@@ -51,10 +51,12 @@ function App() {
             />
           )}
         </>
-      ) : (
+      ) : !error ? (
         <Container className="d-flex justify-content-center mt-5 mb-5">
           <FadeLoader color="#106cf6" />
         </Container>
+      ) : (
+        ""
       )}
       <Container className="d-flex justify-content-center mt-5 mb-5">
         {error}

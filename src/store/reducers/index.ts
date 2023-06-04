@@ -1,5 +1,3 @@
-import { combineReducers } from "redux";
-
 import postsReducer from "./postsReducer";
 import commentReducer from "./commentsReducer";
 import userReducer from "./userReducer";
@@ -10,4 +8,4 @@ const store = {
   user: userReducer,
 };
 
-export default combineReducers(store);
+export default store;

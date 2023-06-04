@@ -17,7 +17,7 @@ function Header() {
             <Offcanvas.Header closeButton>
               <Offcanvas.Title id={`offcanvasNavbarLabel-expand-false`}>
                 <Stack direction="horizontal" gap={2}>
-                  <Navbar.Brand href="#me">
+                  <Navbar.Brand href="/my">
                     <img
                       src={logo}
                       width="80"
@@ -27,7 +27,12 @@ function Header() {
                     />
                   </Navbar.Brand>
                   <Stack gap={2}>
-                    <Nav.Link href="#me">Юрий</Nav.Link>
+                    <Link
+                      to="/my"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Юрий
+                    </Link>
                     <p>
                       <small>arhipow.yuri@gmail.com</small>
                     </p>
@@ -37,12 +42,8 @@ function Header() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Link to={"/"}>
-                  <Nav.Link href="#action1">List of posts</Nav.Link>
-                </Link>
-                <Link to={"/my"}>
-                  <Nav.Link href="#action2">About me</Nav.Link>
-                </Link>
+                <Nav.Link href={"/"}>List of posts</Nav.Link>
+                <Nav.Link href={"/my"}>About me</Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

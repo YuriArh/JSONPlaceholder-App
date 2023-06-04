@@ -20,7 +20,7 @@ function Post(props: {
             gap={3}
             style={{ alignItems: "flex-start" }}
           >
-            <Link to={`user?id=${post.userId}`}>
+            <Link to={`/user/${post.userId}`}>
               <img
                 src={avatar}
                 style={{ width: "100px", height: "100%", border: "none" }}

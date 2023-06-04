@@ -13,6 +13,7 @@ function Comments(props: { id: number }) {
   }, []);
   const comments = useSelector((store: storeType) => store.comments.comments);
   const loading = useSelector((store: storeType) => store.comments.loading);
+  const error = useSelector((store: storeType) => store.comments.error);
   return (
     <ul>
       {!loading ? (
@@ -26,11 +27,16 @@ function Comments(props: { id: number }) {
             </Card>
           );
         })
-      ) : (
+      ) : !error ? (
         <Container className="d-flex justify-content-center mt-5 mb-5">
           <FadeLoader color="#106cf6" />
         </Container>
+      ) : (
+        ""
       )}
+      <Container className="d-flex justify-content-center mt-5 mb-5">
+        {error}
+      </Container>
     </ul>
   );
 }

@@ -18,16 +18,18 @@ const userReducer: Reducer<userStore> = (
         ...state,
         loading: false,
         user: action.payload,
+        error: "",
       };
     case "USER_PENDING":
       return {
         ...state,
         loading: true,
+        error: "",
       };
 
     case "USER_ERROR":
       return {
-        ...state,
+        user: {},
         loading: false,
         error: action.payload,
       };

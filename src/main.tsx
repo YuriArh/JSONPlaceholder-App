@@ -5,25 +5,16 @@ import MyPage from "./pages/MyPage.tsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import store from "./store/index.ts";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-const router = createBrowserRouter([
-  {
-    path: "*",
-    element: <App />,
-  },
-  {
-    path: "/user",
-    element: <UserPage />,
-  },
-  {
-    path: "/my",
-    element: <MyPage />,
-  },
-]);
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}></Route>
+        <Route path="my" element={<MyPage />}></Route>
+        <Route path="user/:id" element={<UserPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   </Provider>
 );

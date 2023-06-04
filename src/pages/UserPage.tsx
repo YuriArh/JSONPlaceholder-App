@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, getPosts } from "../action";
-import { useLocation } from "react-router";
+import { useParams } from "react-router";
 import storeType from "../types/storeType";
 
 import Header from "../components/Header";
@@ -13,11 +13,10 @@ import { FadeLoader } from "react-spinners";
 
 function UserPage() {
   const dispatch = useDispatch();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const id = queryParams.get("id");
+  const { id } = useParams();
+  console.log(useParams());
   useEffect(() => {
-    dispatch(getPosts(`/users/${id}/posts`));
+    dispatch(getPosts(`/user/${id}/posts`));
     dispatch(getUser(`/users/${id}`));
   }, [id]);
 
@@ -32,23 +31,31 @@ function UserPage() {
     <>
       <Header />
       <BackButton />
-      {!loadingUser && !loadingPosts && !userError && !postsError ? (
+      {!loadingUser && !loadingPosts ? (
         <>
-          <UserCard user={user} />
+          {!userError ? (
+            <UserCard user={user} />
+          ) : (
+            <Container className="d-flex justify-content-center mt-5 mb-5">
+              {userError}
+            </Container>
+          )}
           <Container>
             <h3>Posts:</h3>
           </Container>
-          <PostList posts={posts} />
+          {!postsError ? (
+            <PostList posts={posts} />
+          ) : (
+            <Container className="d-flex justify-content-center mt-5 mb-5">
+              {postsError}
+            </Container>
+          )}
         </>
       ) : (
         <Container className="d-flex justify-content-center mt-5 mb-5">
           <FadeLoader color="#106cf6" />
         </Container>
       )}
-      <Container className="d-flex justify-content-center mt-5 mb-5">
-        {userError}
-        {postsError}
-      </Container>
     </>
   );
 }

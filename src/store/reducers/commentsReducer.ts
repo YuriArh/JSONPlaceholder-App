@@ -20,16 +20,18 @@ const commentReducer: Reducer<commentsStore> = (
         ...state,
         loading: false,
         comments: action.payload,
+        error: "",
       };
     case "COMMENTS_PENDING":
       return {
         ...state,
         loading: true,
+        error: "",
       };
 
     case "COMMENTS_ERROR":
       return {
-        ...state,
+        comments: [],
         loading: false,
         error: action.payload,
       };

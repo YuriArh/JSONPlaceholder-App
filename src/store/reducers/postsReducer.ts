@@ -20,16 +20,18 @@ const postsReducer: Reducer<postsStore> = (
         ...state,
         loading: false,
         posts: action.payload,
+        error: "",
       };
     case "POSTS_PENDING":
       return {
         ...state,
         loading: true,
+        error: "",
       };
 
     case "POSTS_ERROR":
       return {
-        ...state,
+        posts: [],
         loading: false,
         error: action.payload,
       };
